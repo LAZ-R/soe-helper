@@ -25,7 +25,7 @@
 
     /* Constant colors */
     --lazr-red: #b85858;
-    --html-background-color: #ffffff;
+    --html-background-color: var(--gray-70);
     
     /* Font colors */
     --font-color-default: var(--gray-80);
