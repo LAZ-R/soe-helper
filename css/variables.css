@@ -5,14 +5,29 @@
 
     /* Gray */
     --gray-90: #191919;
+    --filter-gray-90: brightness(0) saturate(100%) invert(0%) sepia(1%) saturate(430%) hue-rotate(344deg) brightness(103%) contrast(80%);
     --gray-80: #333333;
+    --filter-gray-80: brightness(0) saturate(100%) invert(16%) sepia(12%) saturate(2%) hue-rotate(314deg) brightness(90%) contrast(86%);
     --gray-70: #4d4d4d;
+    --filter-gray-70: brightness(0) saturate(100%) invert(26%) sepia(0%) saturate(1302%) hue-rotate(237deg) brightness(107%) contrast(88%);
     --gray-60: #666666;
+    --filter-gray-60: brightness(0) saturate(100%) invert(42%) sepia(0%) saturate(0%) hue-rotate(321deg) brightness(92%) contrast(90%);
     --gray-50: #808080;
+    --filter-gray-50: brightness(0) saturate(100%) invert(53%) sepia(0%) saturate(967%) hue-rotate(187deg) brightness(94%) contrast(82%);
     --gray-40: #999999;
+    --filter-gray-40: brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(256%) hue-rotate(167deg) brightness(80%) contrast(99%);
     --gray-30: #b3b3b3;
+    --filter-gray-30: brightness(0) saturate(100%) invert(71%) sepia(0%) saturate(0%) hue-rotate(344deg) brightness(103%) contrast(88%);
     --gray-20: #cccccc;
+    --filter-gray-20: brightness(0) saturate(100%) invert(68%) sepia(98%) saturate(0%) hue-rotate(134deg) brightness(100%) contrast(95%);
     --gray-10: #e6e6e6;
+    --filter-gray-10: brightness(0) saturate(100%) invert(98%) sepia(13%) saturate(70%) hue-rotate(179deg) brightness(111%) contrast(80%);
+
+    --unlocked: #A2C989;
+    --filter-unlocked: brightness(0) saturate(100%) invert(90%) sepia(18%) saturate(682%) hue-rotate(43deg) brightness(85%) contrast(87%);
+
+    --packed: #FF6D2E;
+    --filter-packed: brightness(0) saturate(100%) invert(49%) sepia(40%) saturate(1823%) hue-rotate(341deg) brightness(102%) contrast(101%);
 
     /* Primary */
     --primary: #3a386e;

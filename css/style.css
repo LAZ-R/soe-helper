@@ -258,6 +258,11 @@ input:checked + .slider:before {
 
     --district-area-width: calc((100% - (var(--gap) * 4)) / 3);
     --district-area-height: var(--calculated-height);
+
+
+    --round-button-size: 50px;
+    --round-button-top-gap: 40px;
+    --round-button-vertical-gap: 5px;
 }
 
 .actual-round-area,
@@ -347,6 +352,101 @@ input:checked + .slider:before {
         /* background-color: #63634d; */
     }
 }
+
+
+
+.round-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--round-button-size);
+    height: var(--round-button-size);
+    border-radius: 500px;
+
+    & > img {
+        height: 20px;
+    }
+
+    &.disabled {
+        background-color: var(--gray-90);
+        border: 4px solid var(--gray-70);
+
+        & > img {
+            filter: var(--filter-gray-70);
+        }
+    }
+
+    &.available {
+        background-color: var(--gray-90);
+        border: 4px solid var(--gray-30);
+
+        & > img {
+            filter: var(--filter-gray-30);
+        }
+    }
+
+    &.unlocked {
+        /* background-color: var(--gray-90);
+        border: 4px solid var(--unlocked); */
+        background-color: var(--unlocked);
+        border: none;
+
+        & > img {
+            height: 30px;
+            /* filter: var(--filter-unlocked); */
+            filter: var(--filter-gray-90);
+        }
+    }
+
+    &.packed {
+        /* background-color: var(--gray-90);
+        border: 4px solid var(--packed); */
+        background-color: var(--packed);
+        border: none;
+
+        & > img {
+            height: 30px;
+            /* filter: var(--filter-packed); */
+            filter: var(--filter-gray-90);
+        }
+    }
+}
+
+#player1PackedButton { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size)) - 10px); }
+#player1SwordButton { top: var(--round-button-top-gap); right: calc(50% - (var(--round-button-size)) - 10px); }
+#player1RayGunButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#player1ArniesButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size) / 2)); }
+#player1ServantButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); right: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+
+#player2PackedButton { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size)) - 10px); }
+#player2SwordButton { top: var(--round-button-top-gap); right: calc(50% - (var(--round-button-size)) - 10px); }
+#player2RayGunButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#player2ArniesButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size) / 2)); }
+#player2ServantButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); right: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+
+#footlightDoor1Button { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#footlightDoor2Button { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size) / 2)); }
+#footlightDoor3Button { top: var(--round-button-top-gap); right: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#footlightBeastAreaButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size)) - 10px); }
+#footlightPortalButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); right: calc(50% - (var(--round-button-size)) - 10px); }
+
+#waterfrontDoor1Button { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#waterfrontDoor2Button { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size) / 2)); }
+#waterfrontDoor3Button { top: var(--round-button-top-gap); right: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#waterfrontBeastAreaButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size)) - 10px); }
+#waterfrontPortalButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); right: calc(50% - (var(--round-button-size)) - 10px); }
+
+#canalDoor1Button { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#canalDoor2Button { top: var(--round-button-top-gap); left: calc(50% - (var(--round-button-size) / 2)); }
+#canalDoor3Button { top: var(--round-button-top-gap); right: calc(50% - (var(--round-button-size)) - (var(--round-button-size) / 2) - 20px); }
+#canalBeastAreaButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); left: calc(50% - (var(--round-button-size)) - 10px); }
+#canalPortalButton { top: calc(var(--round-button-top-gap) + var(--round-button-size) + var(--round-button-vertical-gap)); right: calc(50% - (var(--round-button-size)) - 10px); }
+
+
+
+
+
 
 /* ############################################################################
 -------------------------------- MEDIA QUERIES --------------------------------
