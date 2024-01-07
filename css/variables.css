@@ -23,6 +23,8 @@
     --gray-10: #e6e6e6;
     --filter-gray-10: brightness(0) saturate(100%) invert(98%) sepia(13%) saturate(70%) hue-rotate(179deg) brightness(111%) contrast(80%);
 
+    --filter-white: brightness(0) saturate(100%) invert(99%) sepia(7%) saturate(13%) hue-rotate(26deg) brightness(98%) contrast(104%);
+
     --unlocked: #6CB6D5;
     --unlocked-gradient: radial-gradient(circle, rgba(163,248,250,1) 0%, rgba(0,58,148,1) 100%);
     --filter-unlocked: brightness(0) saturate(100%) invert(90%) sepia(18%) saturate(682%) hue-rotate(43deg) brightness(85%) contrast(87%);
@@ -30,6 +32,9 @@
     --packed: #FF6D2E;
     --packed-gradient: radial-gradient(circle, rgba(255,185,104,1) 0%, rgba(230,26,0,1) 100%);
     --filter-packed: brightness(0) saturate(100%) invert(49%) sepia(40%) saturate(1823%) hue-rotate(341deg) brightness(102%) contrast(101%);
+
+    --ritual: #f0eb63;
+    --filter-ritual: brightness(0) saturate(100%) invert(88%) sepia(11%) saturate(2159%) hue-rotate(356deg) brightness(113%) contrast(88%);
 
     --servant-gradient: radial-gradient(circle, rgba(190,142,219,1) 0%, rgba(69,0,230,1) 100%);
 

@@ -282,7 +282,7 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid black; */
+    /* border: 1px solid white; */
     color: white;
     /* background-color: var(--gray-80); */
     font-size: 13px;
@@ -306,6 +306,80 @@ input:checked + .slider:before {
     top: var(--gap); left: calc(var(--gap) + var(--player-area-width) + var(--gap));
     width: calc(100% - ((var(--gap) + var(--player-area-width) + var(--gap)) * 2 ));
     height: calc( var(--rounds-area-height) + var(--gap) + var(--player-area-height));
+
+    & .ritual-button {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 50%; width: 50%;
+        min-height: 50%; height: 50%;
+        background-size: cover;
+        background-position: center;
+
+        & .ritual-symbol-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 100%; width: 100%;
+            min-height: 100%; height: 100%;
+
+            &.ritual-disabled {
+                background-color: #000000b7;
+
+                & img {
+                    height: 75%;
+                    filter: var(--filter-white);
+                    opacity: .5;
+                }
+            }
+
+            &.ritual-available {
+                background-color: #0000004b;
+
+                & img {
+                    height: 75%;
+                    filter: var(--filter-white);
+                    opacity: 1;
+                }
+            }
+
+            &.ritual-unlocked {
+                background-color: #000000;
+
+                & img {
+                    height: 75%;
+                    filter: var(--filter-ritual);
+                    opacity: 1;
+                }
+            }
+
+            
+        }
+
+        &.nero-ritual-button {
+            top: 0; left: 0;
+            background-image: url('https://static1.millenium.org/article_old/images/contenu/actus/CoD/Black_Ops_3/Zombie/cod_bo3_zombie_shadows_of_evil_nero_place.jpg');
+        }
+        &.jessica-ritual-button {
+            top: 0; left: 50%;
+            background-image: url('https://callofdutymaps.com/wp-content/uploads/shadowsofevil35-1024x576.jpg');
+        }
+        &.floyd-ritual-button {
+            top: 50%; left: 0;
+            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/392172322426405263/CDF1FF0E597C26FF8282706EB9136A6370A407A2/');
+        }
+        &.jack-ritual-button {
+            top: 50%; left: 50%;
+            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/392172322426411122/2E4B03C9C180755B8B286FD5082296A0ADA966D3/');
+        }
+        &.rift-ritual-button {
+            display: none;
+            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/392172322426411122/2E4B03C9C180755B8B286FD5082296A0ADA966D3/');
+        }
+    }
+
+    
 }
 
 .player-area {
@@ -316,20 +390,19 @@ input:checked + .slider:before {
     background-position: center;
 
     &.default-background {
-        background-image: url('../medias/images/soe/background.gif');
+        background-image: url('../medias/images/soe/background.png');
     }
 
     &.lazr-background {
-        background-image: url('https://gifdb.com/images/file/godzilla-vs-kong-atomic-breath-attack-uto4xntfhu69pkqm.gif');
+        background-image: url('https://images-na.ssl-images-amazon.com/images/S/pv-target-images/ea63841ccf91d63e9973fcc75575d80a8bb093f564d677fde79c5b34abdbe781._RI_TTW_SX1080_FMjpg_.jpg');
     }
 
     &.manta-background {
-        background-image: url('https://64.media.tumblr.com/1c2c06f89966805d6aca25717d784ee2/tumblr_ozztpeCUXG1ut1d6co2_540.gif');
+        background-image: url('https://www.surfer.com/.image/t_share/MTk2Mjc3MDUyNjM3NTg2OTcx/gilbert-teave-teahupoo.jpg');
     }
 
     &.brati-background {
-        background-image: url('https://media2.giphy.com/media/dvBgr7pA6FTJOMOALY/giphy.gif');
-        /* background-image: url('https://media2.giphy.com/media/3Ji0LcVG6EVZS/giphy.gif'); */
+        background-image: url('https://static.vecteezy.com/system/resources/previews/023/856/948/non_2x/cute-baby-fox-in-snow-winter-seasonal-theme-generative-ai-free-photo.jpg');
     }
 }
     .player-1-area {
@@ -374,12 +447,12 @@ input:checked + .slider:before {
 
         &.lazr-title {
             background-color: #000000c9;
-            color: #20d3b5;
+            color: #eb6851;
         }
 
         &.manta-title {
             background-color: #000000c9;
-            color: #f77260;
+            color: #62dae2;
         }
 
         &.brati-title {
@@ -395,7 +468,7 @@ input:checked + .slider:before {
         width: 100%;
         height: 100%;
         padding: 5px 5px;
-        background-color: #00000091;
+        background-color: #00000080;
     }
 }
 
@@ -404,8 +477,17 @@ input:checked + .slider:before {
     top: calc(25px + var(--gap) + (var(--round-button-size) / 2) - 2px);
     display: flex;
     min-height: 4px;
-    width: 150px;
-    background-color: var(--gray-60);
+    width: 20px;
+    background-color: white;
+    opacity: .25;
+
+    &.line-1 {
+        left: calc(50% - (var(--round-button-size) / 2) - 20px);
+    }
+
+    &.line-2 {
+        left: calc(50% + (var(--round-button-size) / 2));
+    }
 }
 
 .round-button {
@@ -416,6 +498,7 @@ input:checked + .slider:before {
     width: var(--round-button-size);
     height: var(--round-button-size);
     border-radius: 500px;
+    box-shadow: 0px 5px 11px 2px #000000;
 
     & > img {
         height: 20px;
@@ -423,19 +506,20 @@ input:checked + .slider:before {
 
     &.disabled {
         background-color: var(--gray-90);
-        border: 4px solid var(--gray-70);
+        border: 4px solid white;
+        opacity: .25;
 
         & > img {
-            filter: var(--filter-gray-70);
+            filter: var(--filter-white);
         }
     }
 
     &.available {
         background-color: var(--gray-90);
-        border: 4px solid var(--gray-30);
+        border: 4px solid white;
 
         & > img {
-            filter: var(--filter-gray-30);
+            filter: var(--filter-white);
         }
     }
 

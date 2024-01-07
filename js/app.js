@@ -24,6 +24,91 @@ const setTriStateButton = (button) => {
   }
 }
 
+const setFirstDoorButton = (button, districtName) => {
+  if (button.classList.contains('available')) {
+    button.classList.replace('available', 'unlocked');
+    button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+    const line1 = document.getElementById(`${districtName}Line1`);
+    line1.style.opacity = .75;
+
+    const door2Button = document.getElementById(`${districtName}Door2Button`);
+    door2Button.classList.replace('disabled', 'available');
+    door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+    const beastAreaButton = document.getElementById(`${districtName}BeastAreaButton`);
+    beastAreaButton.classList.replace('disabled', 'available');
+    beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
+
+    const portalButton = document.getElementById(`${districtName}PortalButton`);
+    portalButton.classList.replace('disabled', 'available');
+    portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
+  } else if (button.classList.contains('unlocked')) {
+    button.classList.replace('unlocked', 'available');
+    button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+    const line1 = document.getElementById(`${districtName}Line1`);
+    line1.style.opacity = .25;
+    const line2 = document.getElementById(`${districtName}Line2`);
+    line2.style.opacity = .25;
+
+    const door2Button = document.getElementById(`${districtName}Door2Button`);
+    door2Button.classList.replace('available', 'disabled');
+    door2Button.classList.replace('unlocked', 'disabled');
+    door2Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
+
+    const door3Button = document.getElementById(`${districtName}Door3Button`);
+    door3Button.classList.replace('available', 'disabled');
+    door3Button.classList.replace('unlocked', 'disabled');
+    door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
+
+    const beastAreaButton = document.getElementById(`${districtName}BeastAreaButton`);
+    beastAreaButton.classList.replace('available', 'disabled');
+    beastAreaButton.classList.replace('unlocked', 'disabled');
+    beastAreaButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
+
+    const portalButton = document.getElementById(`${districtName}PortalButton`);
+    portalButton.classList.replace('available', 'disabled');
+    portalButton.classList.replace('unlocked', 'disabled');
+    portalButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
+  }
+}
+
+const setSecondDoorButton = (button, districtName) => {
+  if (button.classList.contains('available')) {
+    button.classList.replace('available', 'unlocked');
+    button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+    
+    const line2 = document.getElementById(`${districtName}Line2`);
+    line2.style.opacity = .75;
+
+    const door3Button = document.getElementById(`${districtName}Door3Button`);
+    door3Button.classList.replace('disabled', 'available');
+    door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+  } else if (button.classList.contains('unlocked')) {
+    button.classList.replace('unlocked', 'available');
+    button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+    const line2 = document.getElementById(`${districtName}Line2`);
+    line2.style.opacity = .25;
+
+    const door3Button = document.getElementById(`${districtName}Door3Button`);
+    door3Button.classList.replace('available', 'disabled');
+    door3Button.classList.replace('unlocked', 'disabled');
+    door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
+  }
+}
+
+const setThirdDoorButton = (button) => {
+  if (button.classList.contains('available')) {
+    button.classList.replace('available', 'unlocked');
+    button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+  } else if (button.classList.contains('unlocked')) {
+    button.classList.replace('unlocked', 'available');
+    button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+  } 
+}
+
 const onButtonClick = (buttonId) => {
   //console.log(buttonId);
   const button = document.getElementById(buttonId);
@@ -157,74 +242,15 @@ const onButtonClick = (buttonId) => {
     /* ============================= FOOTLIGHT ============================= */
 
     case "footlightDoor1Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-
-        const door2Button = document.getElementById('footlightDoor2Button');
-        door2Button.classList.replace('disabled', 'available');
-        door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const beastAreaButton = document.getElementById('footlightBeastAreaButton');
-        beastAreaButton.classList.replace('disabled', 'available');
-        beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
-
-        const portalButton = document.getElementById('footlightPortalButton');
-        portalButton.classList.replace('disabled', 'available');
-        portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door2Button = document.getElementById('footlightDoor2Button');
-        door2Button.classList.replace('available', 'disabled');
-        door2Button.classList.replace('unlocked', 'disabled');
-        door2Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const door3Button = document.getElementById('footlightDoor3Button');
-        door3Button.classList.replace('available', 'disabled');
-        door3Button.classList.replace('unlocked', 'disabled');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const beastAreaButton = document.getElementById('footlightBeastAreaButton');
-        beastAreaButton.classList.replace('available', 'disabled');
-        beastAreaButton.classList.replace('unlocked', 'disabled');
-        beastAreaButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const portalButton = document.getElementById('footlightPortalButton');
-        portalButton.classList.replace('available', 'disabled');
-        portalButton.classList.replace('unlocked', 'disabled');
-        portalButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-      }
+      setFirstDoorButton(button, 'footlight');
       break;
 
     case "footlightDoor2Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-
-        const door3Button = document.getElementById('footlightDoor3Button');
-        door3Button.classList.replace('disabled', 'available');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door3Button = document.getElementById('footlightDoor3Button');
-        door3Button.classList.replace('available', 'disabled');
-        door3Button.classList.replace('unlocked', 'disabled');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-      }
+      setSecondDoorButton(button, 'footlight');
       break;
 
     case "footlightDoor3Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-      } 
+      setThirdDoorButton(button);
       break;
 
     case "footlightBeastAreaButton":
@@ -245,74 +271,15 @@ const onButtonClick = (buttonId) => {
   
     /* ============================ WATERFRONT ============================ */
     case "waterfrontDoor1Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-
-        const door2Button = document.getElementById('waterfrontDoor2Button');
-        door2Button.classList.replace('disabled', 'available');
-        door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door3Button = document.getElementById('waterfrontDoor3Button');
-        door3Button.classList.replace('available', 'disabled');
-        door3Button.classList.replace('unlocked', 'disabled');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const beastAreaButton = document.getElementById('waterfrontBeastAreaButton');
-        beastAreaButton.classList.replace('disabled', 'available');
-        beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
-
-        const portalButton = document.getElementById('waterfrontPortalButton');
-        portalButton.classList.replace('disabled', 'available');
-        portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door2Button = document.getElementById('waterfrontDoor2Button');
-        door2Button.classList.replace('available', 'disabled');
-        door2Button.classList.replace('unlocked', 'disabled');
-        door2Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const beastAreaButton = document.getElementById('waterfrontBeastAreaButton');
-        beastAreaButton.classList.replace('available', 'disabled');
-        beastAreaButton.classList.replace('unlocked', 'disabled');
-        beastAreaButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const portalButton = document.getElementById('waterfrontPortalButton');
-        portalButton.classList.replace('available', 'disabled');
-        portalButton.classList.replace('unlocked', 'disabled');
-        portalButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-      }
+      setFirstDoorButton(button, 'waterfront');
       break;
 
     case "waterfrontDoor2Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-
-        const door3Button = document.getElementById('waterfrontDoor3Button');
-        door3Button.classList.replace('disabled', 'available');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door3Button = document.getElementById('waterfrontDoor3Button');
-        door3Button.classList.replace('available', 'disabled');
-        door3Button.classList.replace('unlocked', 'disabled');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-      }
+      setSecondDoorButton(button, 'waterfront');
       break;
 
     case "waterfrontDoor3Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-      } 
+      setThirdDoorButton(button);
       break;
 
     case "waterfrontBeastAreaButton":
@@ -333,74 +300,15 @@ const onButtonClick = (buttonId) => {
 
     /* =============================== CANAL =============================== */
     case "canalDoor1Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-
-        const door2Button = document.getElementById('canalDoor2Button');
-        door2Button.classList.replace('disabled', 'available');
-        door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const beastAreaButton = document.getElementById('canalBeastAreaButton');
-        beastAreaButton.classList.replace('disabled', 'available');
-        beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
-
-        const portalButton = document.getElementById('canalPortalButton');
-        portalButton.classList.replace('disabled', 'available');
-        portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door2Button = document.getElementById('canalDoor2Button');
-        door2Button.classList.replace('available', 'disabled');
-        door2Button.classList.replace('unlocked', 'disabled');
-        door2Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const door3Button = document.getElementById('canalDoor3Button');
-        door3Button.classList.replace('available', 'disabled');
-        door3Button.classList.replace('unlocked', 'disabled');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const beastAreaButton = document.getElementById('canalBeastAreaButton');
-        beastAreaButton.classList.replace('available', 'disabled');
-        beastAreaButton.classList.replace('unlocked', 'disabled');
-        beastAreaButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-
-        const portalButton = document.getElementById('canalPortalButton');
-        portalButton.classList.replace('available', 'disabled');
-        portalButton.classList.replace('unlocked', 'disabled');
-        portalButton.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-      }
+      setFirstDoorButton(button, 'canal');
       break;
 
     case "canalDoor2Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-
-        const door3Button = document.getElementById('canalDoor3Button');
-        door3Button.classList.replace('disabled', 'available');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-
-        const door3Button = document.getElementById('canalDoor3Button');
-        door3Button.classList.replace('available', 'disabled');
-        door3Button.classList.replace('unlocked', 'disabled');
-        door3Button.innerHTML = `<img src="./medias/images/font-awsome/lock-solid.svg" />`;
-      }
+      setSecondDoorButton(button, 'canal');
       break;
 
     case "canalDoor3Button":
-      if (button.classList.contains('available')) {
-        button.classList.replace('available', 'unlocked');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
-      } else if (button.classList.contains('unlocked')) {
-        button.classList.replace('unlocked', 'available');
-        button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
-      } 
+      setThirdDoorButton(button);
       break;
 
     case "canalBeastAreaButton":
@@ -450,7 +358,13 @@ const main = document.getElementById('main');
 main.innerHTML = `
   <div class="rounds-area actual-round-area">vague actuelle</div>
   <div class="rounds-area next-round-area">vague suivante</div>
-  <div class="central-area">Centre</div>
+  <div class="central-area">
+    <div class="ritual-button nero-ritual-button"><div class="ritual-symbol-container ritual-unlocked"><img src="./medias/images/soe/rituel1.svg"/></div></div>
+    <div class="ritual-button jessica-ritual-button"><div class="ritual-symbol-container ritual-available"><img src="./medias/images/soe/rituel2.svg"/></div></div>
+    <div class="ritual-button floyd-ritual-button"><div class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel3.svg"/></div></div>
+    <div class="ritual-button jack-ritual-button"><div class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel4.svg"/></div></div>
+    <div class="ritual-button rift-ritual-button"><div class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel5.svg"/></div></div>
+  </div>
   <div id="player1Background" class="player-area player-1-area default-background">
     <div id="player1NameButton" class="area-title default-title" onclick="onButtonClick('player1NameButton')"><span>JOUEUR 1</span></div>
     <div class="area-content">
@@ -474,7 +388,8 @@ main.innerHTML = `
   <div class="district-area footlight-area" style="background-image: url('./medias/images/soe/footlight.webp');">
     <div class="area-title default-title"><span>FOOTLIGHT</span></div>
     <div class="area-content">
-      <div class="line"></div>
+      <div id="footlightLine1" class="line line-1"></div>
+      <div id="footlightLine2" class="line line-2"></div>
       <div id="footlightDoor1Button" class="round-button available" onclick="onButtonClick('footlightDoor1Button')"><img src="./medias/images/font-awsome/door-closed-solid.svg" /></div>
       <div id="footlightDoor2Button" class="round-button disabled" onclick="onButtonClick('footlightDoor2Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="footlightDoor3Button" class="round-button disabled" onclick="onButtonClick('footlightDoor3Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
@@ -485,7 +400,8 @@ main.innerHTML = `
   <div class="district-area waterfront-area" style="background-image: url('./medias/images/soe/waterfront.webp');">
     <div class="area-title default-title"><span>WATERFRONT</span></div>
     <div class="area-content">
-      <div class="line"></div>
+      <div id="waterfrontLine1" class="line line-1"></div>
+      <div id="waterfrontLine2" class="line line-2"></div>
       <div id="waterfrontDoor1Button" class="round-button available" onclick="onButtonClick('waterfrontDoor1Button')"><img src="./medias/images/font-awsome/door-closed-solid.svg" /></div>
       <div id="waterfrontDoor2Button" class="round-button disabled" onclick="onButtonClick('waterfrontDoor2Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="waterfrontDoor3Button" class="round-button disabled" onclick="onButtonClick('waterfrontDoor3Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
@@ -493,10 +409,11 @@ main.innerHTML = `
       <div id="waterfrontPortalButton" class="round-button disabled" onclick="onButtonClick('waterfrontPortalButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
     </div>
   </div>
-  <div class="district-area canal-area" style="background-image: url('./medias/images/soe/canal.webp');">
+  <div class="district-area canal-area" style="background-image: url('https://callofdutymaps.com/wp-content/uploads/shadowsofevil20-1024x576.jpg');">
     <div class="area-title default-title"><span>CANAL</span></div>
     <div class="area-content">
-      <div class="line"></div>
+      <div id="canalLine1" class="line line-1"></div>
+      <div id="canalLine2" class="line line-2"></div>
       <div id="canalDoor1Button" class="round-button available" onclick="onButtonClick('canalDoor1Button')"><img src="./medias/images/font-awsome/door-closed-solid.svg" /></div>
       <div id="canalDoor2Button" class="round-button disabled" onclick="onButtonClick('canalDoor2Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="canalDoor3Button" class="round-button disabled" onclick="onButtonClick('canalDoor3Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
