@@ -73,50 +73,152 @@ export const onButtonClick = (buttonId) => {
     /* ============================= FOOTLIGHT ============================= */
 
     case "footlightDoor1Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+        const door2Button = document.getElementById('footlightDoor2Button');
+        door2Button.classList.replace('disabled', 'available');
+        door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+        const beastAreaButton = document.getElementById('footlightBeastAreaButton');
+        beastAreaButton.classList.replace('disabled', 'available');
+        beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
+
+        const portalButton = document.getElementById('footlightPortalButton');
+        portalButton.classList.replace('disabled', 'available');
+        portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
+      }
       break;
 
     case "footlightDoor2Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+        const door3Button = document.getElementById('footlightDoor3Button');
+        door3Button.classList.replace('disabled', 'available');
+        door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+      }
       break;
 
     case "footlightDoor3Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+      } 
       break;
 
     case "footlightBeastAreaButton":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      }
       break;
 
     case "footlightPortalButton":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      }
       break;
   
     /* ============================ WATERFRONT ============================ */
     case "waterfrontDoor1Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+        const door2Button = document.getElementById('waterfrontDoor2Button');
+        door2Button.classList.replace('disabled', 'available');
+        door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+        const beastAreaButton = document.getElementById('waterfrontBeastAreaButton');
+        beastAreaButton.classList.replace('disabled', 'available');
+        beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
+
+        const portalButton = document.getElementById('waterfrontPortalButton');
+        portalButton.classList.replace('disabled', 'available');
+        portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
+      }
       break;
 
     case "waterfrontDoor2Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+        const door3Button = document.getElementById('waterfrontDoor3Button');
+        door3Button.classList.replace('disabled', 'available');
+        door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+      }
       break;
 
     case "waterfrontDoor3Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+      } 
       break;
 
     case "waterfrontBeastAreaButton":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      }
       break;
 
     case "waterfrontPortalButton":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      }
       break;
 
     /* =============================== CANAL =============================== */
     case "canalDoor1Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+        const door2Button = document.getElementById('canalDoor2Button');
+        door2Button.classList.replace('disabled', 'available');
+        door2Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+        const beastAreaButton = document.getElementById('canalBeastAreaButton');
+        beastAreaButton.classList.replace('disabled', 'available');
+        beastAreaButton.innerHTML = `<img src="./medias/images/soe/beast.svg" />`;
+
+        const portalButton = document.getElementById('canalPortalButton');
+        portalButton.classList.replace('disabled', 'available');
+        portalButton.innerHTML = `<img src="./medias/images/soe/portal.svg" />`;
+      }
       break;
 
     case "canalDoor2Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+
+        const door3Button = document.getElementById('canalDoor3Button');
+        door3Button.classList.replace('disabled', 'available');
+        door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+      }
       break;
 
     case "canalDoor3Button":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+        button.innerHTML = `<img src="./medias/images/font-awsome/door-open-solid.svg" />`;
+      } 
       break;
 
     case "canalBeastAreaButton":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      }
       break;
 
     case "canalPortalButton":
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      }
       break;
 
     default:
@@ -174,7 +276,8 @@ main.innerHTML = `
   <div class="district-area footlight-area">
     <div class="area-title"><span>FOOTLIGHT</span></div>
     <div class="area-content">
-      <div id="footlightDoor1Button" class="round-button available" onclick="onButtonClick('footlightDoor1Button')"><img src="./medias/images/font-awsome/satellite-dish-solid.svg" /></div>
+      <div class="line"></div>
+      <div id="footlightDoor1Button" class="round-button available" onclick="onButtonClick('footlightDoor1Button')"><img src="./medias/images/font-awsome/door-closed-solid.svg" /></div>
       <div id="footlightDoor2Button" class="round-button disabled" onclick="onButtonClick('footlightDoor2Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="footlightDoor3Button" class="round-button disabled" onclick="onButtonClick('footlightDoor3Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="footlightBeastAreaButton" class="round-button disabled" onclick="onButtonClick('footlightBeastAreaButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
@@ -184,7 +287,8 @@ main.innerHTML = `
   <div class="district-area waterfront-area">
     <div class="area-title"><span>WATERFRONT</span></div>
     <div class="area-content">
-      <div id="waterfrontDoor1Button" class="round-button available" onclick="onButtonClick('waterfrontDoor1Button')"><img src="./medias/images/font-awsome/satellite-dish-solid.svg" /></div>
+      <div class="line"></div>
+      <div id="waterfrontDoor1Button" class="round-button available" onclick="onButtonClick('waterfrontDoor1Button')"><img src="./medias/images/font-awsome/door-closed-solid.svg" /></div>
       <div id="waterfrontDoor2Button" class="round-button disabled" onclick="onButtonClick('waterfrontDoor2Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="waterfrontDoor3Button" class="round-button disabled" onclick="onButtonClick('waterfrontDoor3Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="waterfrontBeastAreaButton" class="round-button disabled" onclick="onButtonClick('waterfrontBeastAreaButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
@@ -194,7 +298,8 @@ main.innerHTML = `
   <div class="district-area canal-area">
     <div class="area-title"><span>CANAL</span></div>
     <div class="area-content">
-      <div id="canalDoor1Button" class="round-button available" onclick="onButtonClick('canalDoor1Button')"><img src="./medias/images/font-awsome/satellite-dish-solid.svg" /></div>
+      <div class="line"></div>
+      <div id="canalDoor1Button" class="round-button available" onclick="onButtonClick('canalDoor1Button')"><img src="./medias/images/font-awsome/door-closed-solid.svg" /></div>
       <div id="canalDoor2Button" class="round-button disabled" onclick="onButtonClick('canalDoor2Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="canalDoor3Button" class="round-button disabled" onclick="onButtonClick('canalDoor3Button')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="canalBeastAreaButton" class="round-button disabled" onclick="onButtonClick('canalBeastAreaButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>

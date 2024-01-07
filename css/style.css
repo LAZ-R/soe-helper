@@ -355,7 +355,14 @@ input:checked + .slider:before {
     }
 }
 
-
+.line {
+    position: absolute;
+    top: calc(25px + var(--gap) + (var(--round-button-size) / 2) - 2.5px);
+    display: flex;
+    min-height: 5px;
+    width: 150px;
+    background-color: var(--gray-60);
+}
 
 .round-button {
     position: absolute;
