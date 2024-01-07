@@ -23,11 +23,15 @@
     --gray-10: #e6e6e6;
     --filter-gray-10: brightness(0) saturate(100%) invert(98%) sepia(13%) saturate(70%) hue-rotate(179deg) brightness(111%) contrast(80%);
 
-    --unlocked: #A2C989;
+    --unlocked: #6CB6D5;
+    --unlocked-gradient: radial-gradient(circle, rgba(163,248,250,1) 0%, rgba(0,58,148,1) 100%);
     --filter-unlocked: brightness(0) saturate(100%) invert(90%) sepia(18%) saturate(682%) hue-rotate(43deg) brightness(85%) contrast(87%);
 
     --packed: #FF6D2E;
+    --packed-gradient: radial-gradient(circle, rgba(255,185,104,1) 0%, rgba(230,26,0,1) 100%);
     --filter-packed: brightness(0) saturate(100%) invert(49%) sepia(40%) saturate(1823%) hue-rotate(341deg) brightness(102%) contrast(101%);
+
+    --servant-gradient: radial-gradient(circle, rgba(190,142,219,1) 0%, rgba(69,0,230,1) 100%);
 
     /* Primary */
     --primary: #3a386e;
@@ -40,7 +44,7 @@
 
     /* Constant colors */
     --lazr-red: #b85858;
-    --html-background-color: var(--gray-70);
+    --html-background-color: black;
     
     /* Font colors */
     --font-color-default: var(--gray-80);
