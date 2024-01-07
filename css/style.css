@@ -261,7 +261,7 @@ input:checked + .slider:before {
 
 
     --round-button-size: 50px;
-    --round-button-top-gap: 40px;
+    --round-button-top-gap: 30px;
     --round-button-vertical-gap: 5px;
 }
 
@@ -280,6 +280,7 @@ input:checked + .slider:before {
     /* border: 1px solid black; */
     color: white;
     background-color: var(--gray-80);
+    font-size: 13px;
 }
 
 /* SIZES ---------------------------------------------------------- */
@@ -338,6 +339,7 @@ input:checked + .slider:before {
         justify-content: center;
         align-items: center;
         width: 100%;
+        min-height: 25px; height: 25px; max-height: 25px;
         padding: 5px 0;
         background-color: #2e2e2e;
     }
