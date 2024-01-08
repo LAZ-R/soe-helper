@@ -14,6 +14,70 @@ import { requestWakeLock } from "../wakeLock.js";
 
 // INTERACTIONS UTILISATEUR -------------------------------
 
+const setPercButton = (button) => {
+  if (button.classList.contains('jugger-nog-perc')) {
+    button.classList.replace('jugger-nog-perc', 'double-tap-perc');
+    button.innerHTML = `<img src="./medias/images/soe/double-tap.png" />`;
+  } else if (button.classList.contains('double-tap-perc')) {
+    button.classList.replace('double-tap-perc', 'speed-cola-perc');
+    button.innerHTML = `<img src="./medias/images/soe/speed-cola.png" />`;
+  } else if (button.classList.contains('speed-cola-perc')) {
+    button.classList.replace('speed-cola-perc', 'jugger-nog-perc');
+    button.innerHTML = `<img src="./medias/images/soe/jugger-nog.png" />`;
+  }
+}
+
+const setKeeperButton = (button) => {
+  if (!button.classList.contains('found')) {
+    button.classList.add('found');
+    tramSymbols += 1;
+
+  } else {
+    button.classList.remove('found');
+    tramSymbols -= 1;
+  }
+  if (tramSymbols == 3) {
+    document.getElementById('eggStandButton').classList.remove('disabled');
+  } else {
+    document.getElementById('eggStandButton').classList.add('disabled');
+  }
+}
+
+const setEggButtons = (button, playerNumber) => {
+  if (button.classList.contains('empty')) {
+    button.classList.replace('empty', 'full');
+  }
+
+  switch (playerNumber) {
+    case 1:
+      player1EggParts += 1;
+      if (player1EggParts == 4) {
+        setTimeout(() => {
+          document.getElementById('player1EggContainer').style.opacity = 0;
+          setTimeout(() => {
+            document.getElementById('player1SwordButton').classList.replace('disabled', 'available');
+            document.getElementById('player1SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />';
+          }, 500);
+        }, 300);
+      }
+      break;
+    case 2:
+        player2EggParts += 1;
+        if (player2EggParts == 4) {
+          setTimeout(() => {
+            document.getElementById('player2EggContainer').style.opacity = 0;
+            setTimeout(() => {
+              document.getElementById('player2SwordButton').classList.replace('disabled', 'available');
+              document.getElementById('player2SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />';
+            }, 500);
+          }, 300);
+        }
+        break;
+    default:
+      break;
+  }
+}
+
 const setTriStateButton = (button) => {
   if (button.classList.contains('available')) {
     button.classList.replace('available', 'unlocked');
@@ -126,12 +190,23 @@ const setThirdDoorButton = (button) => {
   } 
 }
 
-let completedRituals = 0;
-
 const onButtonClick = (buttonId) => {
   //console.log(buttonId);
   const button = document.getElementById(buttonId);
   switch (buttonId) {
+
+    /* */
+    case "nextRoundButton":
+      currentRound += 1;
+      document.getElementById('currentRound').innerHTML = `${currentRound}`;
+
+      if (currentRound == 12) {
+        document.getElementById('player1ServantButton').classList.replace('disabled', 'available');
+        document.getElementById('player1ServantButton').innerHTML = `<img src="./medias/images/soe/servant.svg" />`;
+        document.getElementById('player2ServantButton').classList.replace('disabled', 'available');
+        document.getElementById('player2ServantButton').innerHTML = `<img src="./medias/images/soe/servant.svg" />`;
+      }
+      break;
 
     /* */
     case "neroRitualButton":
@@ -183,27 +258,112 @@ const onButtonClick = (buttonId) => {
   
             document.getElementById('centralArea').innerHTML = '';
             document.getElementById('centralArea').innerHTML = `
-              <div class="keeper-symbol-container keeper-0"><img src="./medias/images/soe/keeper-0.png" /></div>
-              <div class="keeper-symbol-container keeper-1"><img src="./medias/images/soe/keeper-1.png" /></div>
-              <div class="keeper-symbol-container keeper-2"><img src="./medias/images/soe/keeper-2.png" /></div>
-              <div class="keeper-symbol-container keeper-3"><img src="./medias/images/soe/keeper-3.png" /></div>
-              <div class="keeper-symbol-container keeper-4"><img src="./medias/images/soe/keeper-4.png" /></div>
-              <div class="keeper-symbol-container keeper-5"><img src="./medias/images/soe/keeper-5.png" /></div>
-              <div class="keeper-symbol-container keeper-6"><img src="./medias/images/soe/keeper-6.png" /></div>
-              <div class="keeper-symbol-container keeper-7"><img src="./medias/images/soe/keeper-7.png" /></div>
-              <div class="keeper-symbol-container keeper-8"><img src="./medias/images/soe/keeper-8.png" /></div>
+              <div id="keeper0" class="keeper-symbol-container keeper-0" onclick="onButtonClick('keeper0')"><img src="./medias/images/soe/keeper-0.png" /></div>
+              <div id="keeper1" class="keeper-symbol-container keeper-1" onclick="onButtonClick('keeper1')"><img src="./medias/images/soe/keeper-1.png" /></div>
+              <div id="keeper2" class="keeper-symbol-container keeper-2" onclick="onButtonClick('keeper2')"><img src="./medias/images/soe/keeper-2.png" /></div>
+              <div id="keeper3" class="keeper-symbol-container keeper-3" onclick="onButtonClick('keeper3')"><img src="./medias/images/soe/keeper-3.png" /></div>
+              <div id="keeper4" class="keeper-symbol-container keeper-4" onclick="onButtonClick('keeper4')"><img src="./medias/images/soe/keeper-4.png" /></div>
+              <div id="keeper5" class="keeper-symbol-container keeper-5" onclick="onButtonClick('keeper5')"><img src="./medias/images/soe/keeper-5.png" /></div>
+              <div id="keeper6" class="keeper-symbol-container keeper-6" onclick="onButtonClick('keeper6')"><img src="./medias/images/soe/keeper-6.png" /></div>
+              <div id="keeper7" class="keeper-symbol-container keeper-7" onclick="onButtonClick('keeper7')"><img src="./medias/images/soe/keeper-7.png" /></div>
+              <div id="keeper8" class="keeper-symbol-container keeper-8" onclick="onButtonClick('keeper8')"><img src="./medias/images/soe/keeper-8.png" /></div>
+              <div id="eggStandButton" class="egg-stand-button disabled" onclick="onButtonClick('eggStandButton')"><img src="./medias/images/soe/egg-stand.png" /></div>
             `;
 
-
             document.getElementById('centralArea').style.opacity = 1;
-  
-            
           }, 500);
           
         }, 300);
 
+      }
+      break;
+
+    /* */
+    case "keeper0":
+      setKeeperButton(button);
+      break;
+    case "keeper1":
+      setKeeperButton(button);
+      break;
+    case "keeper2":
+      setKeeperButton(button);
+      break;
+    case "keeper3":
+      setKeeperButton(button);
+      break;
+    case "keeper4":
+      setKeeperButton(button);
+      break;
+    case "keeper5":
+      setKeeperButton(button);
+      break;
+    case "keeper6":
+      setKeeperButton(button);
+      break;
+    case "keeper7":
+      setKeeperButton(button);
+      break;
+    case "keeper8":
+      setKeeperButton(button);
+      break;
+
+    case "eggStandButton":
+      if (!button.classList.contains('disabled')) {
+        setTimeout(() => {
+          document.getElementById('centralArea').style.opacity = 0;
+          setTimeout(() => {
+            /* 
+            document.getElementById('player2SwordButton').classList.replace('disabled', 'available');
+            document.getElementById('player2SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />'; */
+  
+            document.getElementById('centralArea').innerHTML = '';
+            document.getElementById('centralArea').innerHTML = `
+              <div id="player1EggContainer" class="egg-container egg-player-1">
+                <div id="eggPlayer1Rift" class="egg-part empty" onclick="onButtonClick('eggPlayer1Rift')"><span>RIFT</span></div>
+                <div id="eggPlayer1Footlight" class="egg-part empty" onclick="onButtonClick('eggPlayer1Footlight')"><span>FOOTLIGHT</span></div>
+                <div id="eggPlayer1Waterfront" class="egg-part empty" onclick="onButtonClick('eggPlayer1Waterfront')"><span>WATERFRONT</span></div>
+                <div id="eggPlayer1Canal" class="egg-part empty" onclick="onButtonClick('eggPlayer1Canal')"><span>CANAL</span></div>
+              </div>
+              <div id="player2EggContainer" class="egg-container egg-player-2">
+                <div id="eggPlayer2Rift" class="egg-part empty" onclick="onButtonClick('eggPlayer2Rift')"><span>RIFT</span></div>
+                <div id="eggPlayer2Footlight" class="egg-part empty" onclick="onButtonClick('eggPlayer2Footlight')"><span>FOOTLIGHT</span></div>
+                <div id="eggPlayer2Waterfront" class="egg-part empty" onclick="onButtonClick('eggPlayer2Waterfront')"><span>WATERFRONT</span></div>
+                <div id="eggPlayer2Canal" class="egg-part empty" onclick="onButtonClick('eggPlayer2Canal')"><span>CANAL</span></div>
+              </div>
+            `;
+
+            document.getElementById('centralArea').style.opacity = 1;
+          }, 500);
+          
+        }, 300);
 
       }
+      break;
+
+    case "eggPlayer1Rift":
+      setEggButtons(button, 1);
+      break;
+    case "eggPlayer1Footlight":
+      setEggButtons(button, 1);
+      break;
+    case "eggPlayer1Waterfront":
+      setEggButtons(button, 1);
+      break;
+    case "eggPlayer1Canal":
+      setEggButtons(button, 1);
+      break;
+
+    case "eggPlayer2Rift":
+      setEggButtons(button, 2);
+      break;
+    case "eggPlayer2Footlight":
+      setEggButtons(button, 2);
+      break;
+    case "eggPlayer2Waterfront":
+      setEggButtons(button, 2);
+      break;
+    case "eggPlayer2Canal":
+      setEggButtons(button, 2);
       break;
     /* ============================= JOUEUR 1 ============================= */
 
@@ -333,6 +493,10 @@ const onButtonClick = (buttonId) => {
   
     /* ============================= FOOTLIGHT ============================= */
 
+    case "footlightPercContainer":
+      setPercButton(button);
+      break;
+
     case "footlightDoor1Button":
       setFirstDoorButton(button, 'footlight');
       break;
@@ -362,6 +526,11 @@ const onButtonClick = (buttonId) => {
       break;
   
     /* ============================ WATERFRONT ============================ */
+
+    case "waterfrontPercContainer":
+      setPercButton(button);
+      break;
+    
     case "waterfrontDoor1Button":
       setFirstDoorButton(button, 'waterfront');
       break;
@@ -391,6 +560,11 @@ const onButtonClick = (buttonId) => {
       break;
 
     /* =============================== CANAL =============================== */
+
+    case "canalPercContainer":
+      setPercButton(button);
+      break;
+
     case "canalDoor1Button":
       setFirstDoorButton(button, 'canal');
       break;
@@ -432,6 +606,12 @@ window.onButtonClick = onButtonClick;
 ---------------------------------- EXECUTION ----------------------------------
 ############################################################################ */
 
+let currentRound = 1;
+let completedRituals = 0;
+let tramSymbols = 0;
+let player1EggParts = 0;
+let player2EggParts = 0;
+
 // Auto ---------------------------------------------------
 setStorage();
 setDocumentHeight();
@@ -448,8 +628,8 @@ header.innerHTML = `
 
 const main = document.getElementById('main');
 main.innerHTML = `
-  <div class="rounds-area actual-round-area">vague actuelle</div>
-  <div class="rounds-area next-round-area">vague suivante</div>
+  <div class="rounds-area actual-round-area">MANCHE <span id="currentRound">1</span></div>
+  <div class="rounds-area next-round-area"><div id="nextRoundButton" class="next-round-button" onclick="onButtonClick('nextRoundButton')">MANCHE SUIVANTE</div></div>
   <div id="centralArea" class="central-area">
     <div id="neroRitualButton" class="ritual-button nero-ritual-button" onclick="onButtonClick('neroRitualButton')"><div id="neroRitualSymbolContainer" class="ritual-symbol-container ritual-available"><img src="./medias/images/soe/rituel1.svg"/></div></div>
     <div id="jessicaRitualButton" class="ritual-button jessica-ritual-button" onclick="onButtonClick('jessicaRitualButton')"><div id="jessicaRitualSymbolContainer" class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel2.svg"/></div></div>
@@ -461,24 +641,24 @@ main.innerHTML = `
     <div id="player1NameButton" class="area-title default-title" onclick="onButtonClick('player1NameButton')"><span>JOUEUR 1</span></div>
     <div class="area-content">
       <div id="player1PackedButton" class="round-button disabled" onclick="onButtonClick('player1PackedButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
-      <div id="player1SwordButton" class="round-button available" onclick="onButtonClick('player1SwordButton')"><img src="./medias/images/soe/sword.svg" /></div>
+      <div id="player1SwordButton" class="round-button disabled" onclick="onButtonClick('player1SwordButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="player1RayGunButton" class="round-button available" onclick="onButtonClick('player1RayGunButton')"><img src="./medias/images/soe/ray-gun.svg" /></div>
       <div id="player1ArniesButton" class="round-button available" onclick="onButtonClick('player1ArniesButton')"><img src="./medias/images/soe/arnie.svg" /></div>
-      <div id="player1ServantButton" class="round-button available" onclick="onButtonClick('player1ServantButton')"><img src="./medias/images/soe/servant.svg" /></div>
+      <div id="player1ServantButton" class="round-button disabled" onclick="onButtonClick('player1ServantButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
     </div>
   </div>
   <div id="player2Background" class="player-area player-2-area default-background">
     <div id="player2NameButton" class="area-title default-title" onclick="onButtonClick('player2NameButton')"><span>JOUEUR 2</span></div>
     <div class="area-content">
       <div id="player2PackedButton" class="round-button disabled" onclick="onButtonClick('player2PackedButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
-      <div id="player2SwordButton" class="round-button available" onclick="onButtonClick('player2SwordButton')"><img src="./medias/images/soe/sword.svg" /></div>
+      <div id="player2SwordButton" class="round-button disabled" onclick="onButtonClick('player2SwordButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="player2RayGunButton" class="round-button available" onclick="onButtonClick('player2RayGunButton')"><img src="./medias/images/soe/ray-gun.svg" /></div>
       <div id="player2ArniesButton" class="round-button available" onclick="onButtonClick('player2ArniesButton')"><img src="./medias/images/soe/arnie.svg" /></div>
-      <div id="player2ServantButton" class="round-button available" onclick="onButtonClick('player2ServantButton')"><img src="./medias/images/soe/servant.svg" /></div>
+      <div id="player2ServantButton" class="round-button disabled" onclick="onButtonClick('player2ServantButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
     </div>
   </div>
   <div class="district-area footlight-area" style="background-image: url('./medias/images/soe/footlight.webp');">
-    <div class="area-title default-title"><span>FOOTLIGHT</span></div>
+    <div class="area-title default-title"><span>FOOTLIGHT</span><div id="footlightPercContainer" class="perc-container jugger-nog-perc" onclick="onButtonClick('footlightPercContainer')"><img src="./medias/images/soe/jugger-nog.png" /></div></div>
     <div class="area-content">
       <div id="footlightLine1" class="line line-1"></div>
       <div id="footlightLine2" class="line line-2"></div>
@@ -490,7 +670,7 @@ main.innerHTML = `
     </div>
   </div>
   <div class="district-area waterfront-area" style="background-image: url('./medias/images/soe/waterfront.webp');">
-    <div class="area-title default-title"><span>WATERFRONT</span></div>
+    <div class="area-title default-title"><span>WATERFRONT</span><div id="waterfrontPercContainer" class="perc-container double-tap-perc" onclick="onButtonClick('waterfrontPercContainer')"><img src="./medias/images/soe/double-tap.png" /></div></div>
     <div class="area-content">
       <div id="waterfrontLine1" class="line line-1"></div>
       <div id="waterfrontLine2" class="line line-2"></div>
@@ -502,7 +682,7 @@ main.innerHTML = `
     </div>
   </div>
   <div class="district-area canal-area" style="background-image: url('https://callofdutymaps.com/wp-content/uploads/shadowsofevil20-1024x576.jpg');">
-    <div class="area-title default-title"><span>CANAL</span></div>
+    <div class="area-title default-title"><span>CANAL</span><div id="canalPercContainer" class="perc-container speed-cola-perc" onclick="onButtonClick('canalPercContainer')"><img src="./medias/images/soe/speed-cola.png" /></div></div>
     <div class="area-content">
       <div id="canalLine1" class="line line-1"></div>
       <div id="canalLine2" class="line line-2"></div>
