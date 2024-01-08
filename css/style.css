@@ -303,9 +303,12 @@ input:checked + .slider:before {
     }
 
 .central-area {
+    --keeper-size: 20%;
     top: var(--gap); left: calc(var(--gap) + var(--player-area-width) + var(--gap));
     width: calc(100% - ((var(--gap) + var(--player-area-width) + var(--gap)) * 2 ));
     height: calc( var(--rounds-area-height) + var(--gap) + var(--player-area-height));
+    opacity: 1;
+    transition: opacity .5s linear;
 
     & .ritual-button {
         position: absolute;
@@ -323,23 +326,25 @@ input:checked + .slider:before {
             align-items: center;
             min-width: 100%; width: 100%;
             min-height: 100%; height: 100%;
+            /* transition: background-color .5s linear; */
+
+            & img {
+                filter: var(--filter-white);
+                height: 75%;
+            }
 
             &.ritual-disabled {
                 background-color: #000000b7;
 
                 & img {
-                    height: 75%;
-                    filter: var(--filter-white);
                     opacity: .5;
                 }
             }
 
             &.ritual-available {
-                background-color: #0000004b;
+                background-color: #ffffff00;
 
                 & img {
-                    height: 75%;
-                    filter: var(--filter-white);
                     opacity: 1;
                 }
             }
@@ -348,35 +353,63 @@ input:checked + .slider:before {
                 background-color: #000000;
 
                 & img {
-                    height: 75%;
                     filter: var(--filter-ritual);
                     opacity: 1;
                 }
             }
-
             
         }
 
         &.nero-ritual-button {
             top: 0; left: 0;
-            background-image: url('https://static1.millenium.org/article_old/images/contenu/actus/CoD/Black_Ops_3/Zombie/cod_bo3_zombie_shadows_of_evil_nero_place.jpg');
+            background-image: url('../medias/images/soe/nero-ritual-room.png');
         }
         &.jessica-ritual-button {
             top: 0; left: 50%;
-            background-image: url('https://callofdutymaps.com/wp-content/uploads/shadowsofevil35-1024x576.jpg');
+            background-image: url('../medias/images/soe/jessica-ritual-room.png');
         }
         &.floyd-ritual-button {
             top: 50%; left: 0;
-            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/392172322426405263/CDF1FF0E597C26FF8282706EB9136A6370A407A2/');
+            background-image: url('../medias/images/soe/floyd-ritual-room.png');
         }
         &.jack-ritual-button {
             top: 50%; left: 50%;
-            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/392172322426411122/2E4B03C9C180755B8B286FD5082296A0ADA966D3/');
+            background-image: url('../medias/images/soe/jack-ritual-room.png');
         }
         &.rift-ritual-button {
             display: none;
-            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/392172322426411122/2E4B03C9C180755B8B286FD5082296A0ADA966D3/');
+            border-radius: 500px;
+            min-width: 104px; width: 104px;
+            min-height: 104px; height: 104px;
+            overflow: hidden;
+            background-image: url('../medias/images/soe/rift-ritual-room.png');
         }
+    }
+
+    & .keeper-symbol-container {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--keeper-size);
+        width: fit-content;
+        opacity: .5;
+        filter: var(--filter-gray-30);
+        /* background-color: magenta; */
+
+        & img {
+            height: 100%;
+        }
+
+        &.keeper-0 { bottom: 0; left: calc(50% - (var(--keeper-size) * 2)); }
+        &.keeper-1 { bottom: var(--keeper-size); left: calc(50% - (var(--keeper-size) * 1.75)); }
+        &.keeper-2 { bottom: calc(var(--keeper-size) * 2); left: calc(50% - (var(--keeper-size) * 1.5)); }
+        &.keeper-3 { bottom: calc(var(--keeper-size) * 3); left: calc(50% - (var(--keeper-size) * 1)); }
+        &.keeper-4 { top: calc((var(--keeper-size) / 2)); }
+        &.keeper-5 { bottom: calc(var(--keeper-size) * 3); right: calc(50% - (var(--keeper-size) * 1)); }
+        &.keeper-6 { bottom: calc(var(--keeper-size) * 2); right: calc(50% - (var(--keeper-size) * 1.5)); }
+        &.keeper-7 { bottom: var(--keeper-size); right: calc(50% - (var(--keeper-size) * 1.75)); }
+        &.keeper-8 { bottom: 0; right: calc(50% - (var(--keeper-size) * 2)); }
     }
 
     

@@ -85,6 +85,23 @@ const setSecondDoorButton = (button, districtName) => {
     const door3Button = document.getElementById(`${districtName}Door3Button`);
     door3Button.classList.replace('disabled', 'available');
     door3Button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
+
+    switch (districtName) {
+      case 'footlight':
+        const jessicaRitualSymbolContainer = document.getElementById('jessicaRitualSymbolContainer');
+        jessicaRitualSymbolContainer.classList.replace('ritual-disabled', 'ritual-available');
+        break;
+      case 'waterfront':
+        const floydRitualSymbolContainer = document.getElementById('floydRitualSymbolContainer');
+        floydRitualSymbolContainer.classList.replace('ritual-disabled', 'ritual-available');
+        break;
+      case 'canal':
+        const jackRitualSymbolContainer = document.getElementById('jackRitualSymbolContainer');
+        jackRitualSymbolContainer.classList.replace('ritual-disabled', 'ritual-available');
+        break;
+      default:
+        break;
+    }
   } else if (button.classList.contains('unlocked')) {
     button.classList.replace('unlocked', 'available');
     button.innerHTML = `<img src="./medias/images/font-awsome/door-closed-solid.svg" />`;
@@ -109,10 +126,85 @@ const setThirdDoorButton = (button) => {
   } 
 }
 
+let completedRituals = 0;
+
 const onButtonClick = (buttonId) => {
   //console.log(buttonId);
   const button = document.getElementById(buttonId);
   switch (buttonId) {
+
+    /* */
+    case "neroRitualButton":
+      if (document.getElementById('neroRitualSymbolContainer').classList.contains('ritual-available')) {
+        document.getElementById('neroRitualSymbolContainer').classList.replace('ritual-available', 'ritual-unlocked');
+        completedRituals += 1;
+        if (completedRituals == 4) {
+          document.getElementById('riftRitualButton').style.display = 'flex';
+        }
+      }
+      break;
+    case "jessicaRitualButton":
+      if (document.getElementById('jessicaRitualSymbolContainer').classList.contains('ritual-available')) {
+        document.getElementById('jessicaRitualSymbolContainer').classList.replace('ritual-available', 'ritual-unlocked');
+        completedRituals += 1;
+        if (completedRituals == 4) {
+          document.getElementById('riftRitualButton').style.display = 'flex';
+        }
+      }
+      break;
+    case "floydRitualButton":
+      if (document.getElementById('floydRitualSymbolContainer').classList.contains('ritual-available')) {
+        document.getElementById('floydRitualSymbolContainer').classList.replace('ritual-available', 'ritual-unlocked');
+        completedRituals += 1;
+        if (completedRituals == 4) {
+          document.getElementById('riftRitualButton').style.display = 'flex';
+        }
+      }
+      break;
+    case "jackRitualButton":
+      if (document.getElementById('jackRitualSymbolContainer').classList.contains('ritual-available')) {
+        document.getElementById('jackRitualSymbolContainer').classList.replace('ritual-available', 'ritual-unlocked');
+        completedRituals += 1;
+        if (completedRituals == 4) {
+          document.getElementById('riftRitualButton').style.display = 'flex';
+        }
+      }
+      break;
+    case "riftRitualButton":
+      if (document.getElementById('riftRitualSymbolContainer').classList.contains('ritual-available')) {
+        document.getElementById('riftRitualSymbolContainer').classList.replace('ritual-available', 'ritual-unlocked');
+        setTimeout(() => {
+          document.getElementById('centralArea').style.opacity = 0;
+          setTimeout(() => {
+            document.getElementById('player1PackedButton').classList.replace('disabled', 'available');
+            document.getElementById('player1PackedButton').innerHTML = '<img src="./medias/images/font-awsome/star-regular.svg" />';
+            document.getElementById('player2PackedButton').classList.replace('disabled', 'available');
+            document.getElementById('player2PackedButton').innerHTML = '<img src="./medias/images/font-awsome/star-regular.svg" />';
+  
+            document.getElementById('centralArea').innerHTML = '';
+            document.getElementById('centralArea').innerHTML = `
+              <div class="keeper-symbol-container keeper-0"><img src="./medias/images/soe/keeper-0.png" /></div>
+              <div class="keeper-symbol-container keeper-1"><img src="./medias/images/soe/keeper-1.png" /></div>
+              <div class="keeper-symbol-container keeper-2"><img src="./medias/images/soe/keeper-2.png" /></div>
+              <div class="keeper-symbol-container keeper-3"><img src="./medias/images/soe/keeper-3.png" /></div>
+              <div class="keeper-symbol-container keeper-4"><img src="./medias/images/soe/keeper-4.png" /></div>
+              <div class="keeper-symbol-container keeper-5"><img src="./medias/images/soe/keeper-5.png" /></div>
+              <div class="keeper-symbol-container keeper-6"><img src="./medias/images/soe/keeper-6.png" /></div>
+              <div class="keeper-symbol-container keeper-7"><img src="./medias/images/soe/keeper-7.png" /></div>
+              <div class="keeper-symbol-container keeper-8"><img src="./medias/images/soe/keeper-8.png" /></div>
+            `;
+
+
+            document.getElementById('centralArea').style.opacity = 1;
+  
+            
+          }, 500);
+          
+        }, 300);
+
+
+      }
+      break;
     /* ============================= JOUEUR 1 ============================= */
 
     case "player1NameButton":
@@ -358,17 +450,17 @@ const main = document.getElementById('main');
 main.innerHTML = `
   <div class="rounds-area actual-round-area">vague actuelle</div>
   <div class="rounds-area next-round-area">vague suivante</div>
-  <div class="central-area">
-    <div class="ritual-button nero-ritual-button"><div class="ritual-symbol-container ritual-unlocked"><img src="./medias/images/soe/rituel1.svg"/></div></div>
-    <div class="ritual-button jessica-ritual-button"><div class="ritual-symbol-container ritual-available"><img src="./medias/images/soe/rituel2.svg"/></div></div>
-    <div class="ritual-button floyd-ritual-button"><div class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel3.svg"/></div></div>
-    <div class="ritual-button jack-ritual-button"><div class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel4.svg"/></div></div>
-    <div class="ritual-button rift-ritual-button"><div class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel5.svg"/></div></div>
+  <div id="centralArea" class="central-area">
+    <div id="neroRitualButton" class="ritual-button nero-ritual-button" onclick="onButtonClick('neroRitualButton')"><div id="neroRitualSymbolContainer" class="ritual-symbol-container ritual-available"><img src="./medias/images/soe/rituel1.svg"/></div></div>
+    <div id="jessicaRitualButton" class="ritual-button jessica-ritual-button" onclick="onButtonClick('jessicaRitualButton')"><div id="jessicaRitualSymbolContainer" class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel2.svg"/></div></div>
+    <div id="floydRitualButton" class="ritual-button floyd-ritual-button" onclick="onButtonClick('floydRitualButton')"><div id="floydRitualSymbolContainer" class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel3.svg"/></div></div>
+    <div id="jackRitualButton" class="ritual-button jack-ritual-button" onclick="onButtonClick('jackRitualButton')"><div id="jackRitualSymbolContainer" class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel4.svg"/></div></div>
+    <div id="riftRitualButton" class="ritual-button rift-ritual-button" onclick="onButtonClick('riftRitualButton')"><div id="riftRitualSymbolContainer" class="ritual-symbol-container ritual-available"><img src="./medias/images/soe/rituel5.svg"/></div></div>
   </div>
   <div id="player1Background" class="player-area player-1-area default-background">
     <div id="player1NameButton" class="area-title default-title" onclick="onButtonClick('player1NameButton')"><span>JOUEUR 1</span></div>
     <div class="area-content">
-      <div id="player1PackedButton" class="round-button available" onclick="onButtonClick('player1PackedButton')"><img src="./medias/images/font-awsome/star-regular.svg" /></div>
+      <div id="player1PackedButton" class="round-button disabled" onclick="onButtonClick('player1PackedButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="player1SwordButton" class="round-button available" onclick="onButtonClick('player1SwordButton')"><img src="./medias/images/soe/sword.svg" /></div>
       <div id="player1RayGunButton" class="round-button available" onclick="onButtonClick('player1RayGunButton')"><img src="./medias/images/soe/ray-gun.svg" /></div>
       <div id="player1ArniesButton" class="round-button available" onclick="onButtonClick('player1ArniesButton')"><img src="./medias/images/soe/arnie.svg" /></div>
@@ -378,7 +470,7 @@ main.innerHTML = `
   <div id="player2Background" class="player-area player-2-area default-background">
     <div id="player2NameButton" class="area-title default-title" onclick="onButtonClick('player2NameButton')"><span>JOUEUR 2</span></div>
     <div class="area-content">
-      <div id="player2PackedButton" class="round-button available" onclick="onButtonClick('player2PackedButton')"><img src="./medias/images/font-awsome/star-regular.svg" /></div>
+      <div id="player2PackedButton" class="round-button disabled" onclick="onButtonClick('player2PackedButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="player2SwordButton" class="round-button available" onclick="onButtonClick('player2SwordButton')"><img src="./medias/images/soe/sword.svg" /></div>
       <div id="player2RayGunButton" class="round-button available" onclick="onButtonClick('player2RayGunButton')"><img src="./medias/images/soe/ray-gun.svg" /></div>
       <div id="player2ArniesButton" class="round-button available" onclick="onButtonClick('player2ArniesButton')"><img src="./medias/images/soe/arnie.svg" /></div>
