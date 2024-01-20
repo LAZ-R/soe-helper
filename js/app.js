@@ -45,37 +45,71 @@ const setKeeperButton = (button) => {
 
 const setEggButtons = (button, playerNumber) => {
   if (button.classList.contains('empty')) {
-    button.classList.replace('empty', 'full');
-  }
-
-  switch (playerNumber) {
-    case 1:
-      player1EggParts += 1;
-      if (player1EggParts == 4) {
-        setTimeout(() => {
-          document.getElementById('player1EggContainer').style.opacity = 0;
+    switch (playerNumber) {
+      case 1:
+        if (player1PendingEggParts == 0) {
+          button.classList.replace('empty', 'pending');
+          player1PendingEggParts += 1;
+        }
+        break;
+      case 2:
+        if (player2PendingEggParts == 0) {
+          button.classList.replace('empty', 'pending');
+          player2PendingEggParts += 1;
+        }
+          break;
+      default:
+        break;
+    }
+  } else if (button.classList.contains('pending')) {
+    button.classList.replace('pending', 'full');
+    switch (playerNumber) {
+      case 1:
+        player1PendingEggParts -= 1;
+        player1CompletedEggParts += 1;
+        if (player1CompletedEggParts == 4) {
           setTimeout(() => {
-            document.getElementById('player1SwordButton').classList.replace('disabled', 'available');
-            document.getElementById('player1SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />';
-          }, 500);
-        }, 300);
-      }
-      break;
-    case 2:
-        player2EggParts += 1;
-        if (player2EggParts == 4) {
-          setTimeout(() => {
-            document.getElementById('player2EggContainer').style.opacity = 0;
+            document.getElementById('player1EggContainer').style.opacity = 0;
             setTimeout(() => {
-              document.getElementById('player2SwordButton').classList.replace('disabled', 'available');
-              document.getElementById('player2SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />';
+              document.getElementById('player1SwordButton').classList.replace('disabled', 'available');
+              document.getElementById('player1SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />';
+              if (player2CompletedEggParts == 4) {
+                setUpBlankCentralPart();
+              }
             }, 500);
           }, 300);
         }
         break;
-    default:
-      break;
+      case 2:
+          player2PendingEggParts -= 1;
+          player2CompletedEggParts += 1;
+          if (player2CompletedEggParts == 4) {
+            setTimeout(() => {
+              document.getElementById('player2EggContainer').style.opacity = 0;
+              setTimeout(() => {
+                document.getElementById('player2SwordButton').classList.replace('disabled', 'available');
+                document.getElementById('player2SwordButton').innerHTML = '<img src="./medias/images/soe/sword.svg" />';
+                if (player1CompletedEggParts == 4) {
+                  setUpBlankCentralPart();
+                }
+              }, 500);
+            }, 300);
+          }
+          break;
+      default:
+        break;
+    }
   }
+
+}
+
+const setUpBlankCentralPart = () => {
+  document.getElementById('centralArea').innerHTML = '';
+  document.getElementById('centralArea').style.opacity = 0;
+  setTimeout(() => {
+    document.getElementById('centralArea').innerHTML = `<div class="blank-central-area"><div class="splatter-frame"></div></div>`;
+    document.getElementById('centralArea').style.opacity = 1;
+  }, 300);
 }
 
 const setTriStateButton = (button) => {
@@ -368,11 +402,11 @@ const onButtonClick = (buttonId) => {
     /* ============================= JOUEUR 1 ============================= */
 
     case "player1NameButton":
-      if (button.classList.contains('default-title')) {
+      if (button.classList.contains('player-1-title')) {
         button.innerHTML = `<span>LAZR</span>`
-        button.classList.replace('default-title', 'lazr-title');
+        button.classList.replace('player-1-title', 'lazr-title');
         const player1Background = document.getElementById('player1Background');
-        player1Background.classList.replace('default-background', 'lazr-background');
+        player1Background.classList.replace('player-1-background', 'lazr-background');
 
       } else if (button.classList.contains('lazr-title')) {
         button.innerHTML = `<span>MANTA</span>`
@@ -388,9 +422,9 @@ const onButtonClick = (buttonId) => {
 
       } else if (button.classList.contains('brati-title')) {
         button.innerHTML = `<span>JOUEUR 1</span>`
-        button.classList.replace('brati-title', 'default-title');
+        button.classList.replace('brati-title', 'player-1-title');
         const player1Background = document.getElementById('player1Background');
-        player1Background.classList.replace('brati-background', 'default-background');
+        player1Background.classList.replace('brati-background', 'player-1-background');
 
       }
       break;
@@ -400,7 +434,15 @@ const onButtonClick = (buttonId) => {
       break;
 
     case "player1SwordButton":
-      setTriStateButton(button);
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      } else if (button.classList.contains('unlocked')) {
+        button.classList.replace('unlocked', 'packed');
+        button.innerHTML = `<img src="./medias/images/soe/sword-upgraded.png" />`;
+      } else if (button.classList.contains('packed')) {
+        button.classList.replace('packed', 'available');
+        button.innerHTML = `<img src="./medias/images/soe/sword.svg" />`;
+      }
       break;
 
     case "player1RayGunButton":
@@ -431,11 +473,11 @@ const onButtonClick = (buttonId) => {
     /* ============================= JOUEUR 2 ============================= */
 
     case "player2NameButton":
-      if (button.classList.contains('default-title')) {
+      if (button.classList.contains('player-2-title')) {
         button.innerHTML = `<span>BRATI</span>`
-        button.classList.replace('default-title', 'brati-title');
+        button.classList.replace('player-2-title', 'brati-title');
         const player2Background = document.getElementById('player2Background');
-        player2Background.classList.replace('default-background', 'brati-background');
+        player2Background.classList.replace('player-2-background', 'brati-background');
 
       } else if (button.classList.contains('brati-title')) {
         button.innerHTML = `<span>MANTA</span>`
@@ -451,9 +493,9 @@ const onButtonClick = (buttonId) => {
 
       } else if (button.classList.contains('lazr-title')) {
         button.innerHTML = `<span>JOUEUR 2</span>`
-        button.classList.replace('lazr-title', 'default-title');
+        button.classList.replace('lazr-title', 'player-2-title');
         const player2Background = document.getElementById('player2Background');
-        player2Background.classList.replace('lazr-background', 'default-background');
+        player2Background.classList.replace('lazr-background', 'player-2-background');
 
       }
       break;
@@ -463,7 +505,15 @@ const onButtonClick = (buttonId) => {
       break;
 
     case "player2SwordButton":
-      setTriStateButton(button);
+      if (button.classList.contains('available')) {
+        button.classList.replace('available', 'unlocked');
+      } else if (button.classList.contains('unlocked')) {
+        button.classList.replace('unlocked', 'packed');
+        button.innerHTML = `<img src="./medias/images/soe/sword-upgraded.png" />`;
+      } else if (button.classList.contains('packed')) {
+        button.classList.replace('packed', 'available');
+        button.innerHTML = `<img src="./medias/images/soe/sword.svg" />`;
+      }
       break;
 
     case "player2RayGunButton":
@@ -609,8 +659,10 @@ window.onButtonClick = onButtonClick;
 let currentRound = 1;
 let completedRituals = 0;
 let tramSymbols = 0;
-let player1EggParts = 0;
-let player2EggParts = 0;
+let player1PendingEggParts = 0;
+let player1CompletedEggParts = 0;
+let player2PendingEggParts = 0;
+let player2CompletedEggParts = 0;
 
 // Auto ---------------------------------------------------
 setStorage();
@@ -626,6 +678,17 @@ header.innerHTML = `
   <span>${APP_NAME}</span>
 `; */
 
+/* let splatters = false;
+const showSplatters = () => {
+  const beforeRituals = document.getElementsByClassName('ritual-button');
+  for (var i = 0; i < beforeRituals.length; i++) {
+    const styles = window.getComputedStyle(beforeRituals[i],':before');
+    styles.display = 'flex';
+  }
+  console.log('coucou');
+}
+window.showSplatters = showSplatters; */
+
 const main = document.getElementById('main');
 main.innerHTML = `
   <div class="rounds-area actual-round-area">MANCHE <span id="currentRound">1</span></div>
@@ -637,8 +700,8 @@ main.innerHTML = `
     <div id="jackRitualButton" class="ritual-button jack-ritual-button" onclick="onButtonClick('jackRitualButton')"><div id="jackRitualSymbolContainer" class="ritual-symbol-container ritual-disabled"><img src="./medias/images/soe/rituel4.svg"/></div></div>
     <div id="riftRitualButton" class="ritual-button rift-ritual-button" onclick="onButtonClick('riftRitualButton')"><div id="riftRitualSymbolContainer" class="ritual-symbol-container ritual-available"><img src="./medias/images/soe/rituel5.svg"/></div></div>
   </div>
-  <div id="player1Background" class="player-area player-1-area default-background">
-    <div id="player1NameButton" class="area-title default-title" onclick="onButtonClick('player1NameButton')"><span>JOUEUR 1</span></div>
+  <div id="player1Background" class="player-area player-1-area player-1-background">
+    <div id="player1NameButton" class="area-title player-1-title" onclick="onButtonClick('player1NameButton')"><span>JOUEUR 1</span></div>
     <div class="area-content">
       <div id="player1PackedButton" class="round-button disabled" onclick="onButtonClick('player1PackedButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="player1SwordButton" class="round-button disabled" onclick="onButtonClick('player1SwordButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
@@ -647,8 +710,8 @@ main.innerHTML = `
       <div id="player1ServantButton" class="round-button disabled" onclick="onButtonClick('player1ServantButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
     </div>
   </div>
-  <div id="player2Background" class="player-area player-2-area default-background">
-    <div id="player2NameButton" class="area-title default-title" onclick="onButtonClick('player2NameButton')"><span>JOUEUR 2</span></div>
+  <div id="player2Background" class="player-area player-2-area player-2-background">
+    <div id="player2NameButton" class="area-title player-2-title" onclick="onButtonClick('player2NameButton')"><span>JOUEUR 2</span></div>
     <div class="area-content">
       <div id="player2PackedButton" class="round-button disabled" onclick="onButtonClick('player2PackedButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>
       <div id="player2SwordButton" class="round-button disabled" onclick="onButtonClick('player2SwordButton')"><img src="./medias/images/font-awsome/lock-solid.svg" /></div>

@@ -9,6 +9,7 @@
 * {
     box-sizing: border-box;
     font-family: Inter;
+    letter-spacing: 2px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -300,9 +301,14 @@ input:checked + .slider:before {
 
 .next-round-button {
     background-color: var(--gray-90);
-    padding: 5px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    /* width: 100%;
+    height: 100%; */
     border-radius: 500px;
-    border: 2px solid white;
+    border: 2px solid var(--gray-60);
 
     &:active {
         opacity: .5;
@@ -339,6 +345,17 @@ input:checked + .slider:before {
         min-height: 50%; height: 50%;
         background-size: cover;
         background-position: center;
+
+        /* &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            display: flex;
+            min-width: 100%;
+            min-height: 100%;
+            background-image: url('../medias/images/soe/splatter-frame.png');
+            background-size: 100% 100%;
+        } */
 
         & .ritual-symbol-container {
             display: flex;
@@ -413,7 +430,7 @@ input:checked + .slider:before {
         align-items: center;
         height: var(--keeper-size);
         width: fit-content;
-        opacity: .5;
+        opacity: .66;
         filter: var(--filter-gray-30);
         /* background-color: magenta; */
 
@@ -424,6 +441,7 @@ input:checked + .slider:before {
 
         & img {
             height: 100%;
+            transform: scale(1.20);
         }
 
         &.keeper-0 { bottom: 0; left: calc(50% - (var(--keeper-size) * 2)); }
@@ -462,7 +480,7 @@ input:checked + .slider:before {
         }
     }
 
-    .egg-container {
+    & .egg-container {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -483,28 +501,84 @@ input:checked + .slider:before {
         }
 
         & .egg-part {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             height: 25%;
+            border-radius: 500px;
+            overflow: hidden;
 
             &.empty {
                 background-color: #000000d7;
                 /* filter: grayscale(100%); */
                 backdrop-filter: grayscale(100%);
+                color: var(--gray-50);
+                /* border: 1px solid var(--gray-50); */
+                /* box-shadow: 0px 5px 11px 2px #000000; */
+            }
+
+            &.pending {
+                background-color: #000000a2;
+                /* filter: grayscale(100%); */
+                /* backdrop-filter: grayscale(100%); */
+                border: 1px solid var(--unlocked);
+                box-shadow: 0px 5px 11px 2px #000000;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-image: linear-gradient(
+                        120deg,
+                        rgba(255,255,255, 0) 30%,
+                        rgba(255, 255, 255, 0.534),
+                        rgba(255,255,255, 0) 70%
+                    );
+                    top: 0;
+                    left: -100px;
+                    animation: shine 2s infinite linear; /* Animation */
+                }
             }
 
             &.full {
                 background-color: #0000005d;
                 /* filter: grayscale(100%); */
                 backdrop-filter: none;
+                color: var(--packed);
+                /* border: 1px solid var(--unlocked); */
                 text-decoration: line-through;
             }
         }
     }
 
+    & .blank-central-area {
+        display: flex;
+        min-width: 100%;
+        min-height: 100%;
+        background-image: url('../medias/images/soe/promo.jpg');
+        background-size: cover;
+        background-position-x: center;
+        background-position-y: 60%;
+        opacity: .66;
+
+        & .splatter-frame {
+            display: flex;
+            min-width: 100%;
+            min-height: 100%;
+            background-image: url('../medias/images/soe/splatter-frame.png');
+            background-size: 100% 100%;
+        }
+    }
     
+}
+
+@keyframes shine {
+    0% {left: -100px}
+    50% {left: 100%}
+    100% {left: 100%}
 }
 
 .player-area {
@@ -518,8 +592,16 @@ input:checked + .slider:before {
         background-image: url('../medias/images/soe/background.png');
     }
 
+    &.player-1-background {
+        background-image: url('../medias/images/soe/player-1-background.png');
+    }
+
+    &.player-2-background {
+        background-image: url('../medias/images/soe/player-2-background.png');
+    }
+
     &.lazr-background {
-        background-image: url('https://images-na.ssl-images-amazon.com/images/S/pv-target-images/ea63841ccf91d63e9973fcc75575d80a8bb093f564d677fde79c5b34abdbe781._RI_TTW_SX1080_FMjpg_.jpg');
+        background-image: url('../medias/images/godzilla.jpg');
     }
 
     &.manta-background {
@@ -557,6 +639,17 @@ input:checked + .slider:before {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    
+    /* &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        display: flex;
+        min-width: 100%;
+        min-height: 100%;
+        background-image: url('../medias/images/soe/splatter-frame.png');
+        background-size: 100% 100%;
+    } */
 
     & > .area-title {
         display: flex;
@@ -565,14 +658,25 @@ input:checked + .slider:before {
         width: 100%;
         min-height: 25px; height: 25px; max-height: 25px;
         padding: 5px 0;
+        z-index: 50;
 
         &.default-title {
             background-color: #000000c9;
         }
+        
+        &.player-1-title {
+            background-color: #000000c9;
+            color: #2897ff;
+        }
+
+        &.player-2-title {
+            background-color: #000000c9;
+            color: #d65d5d;
+        }
 
         &.lazr-title {
             background-color: #000000c9;
-            color: #eb6851;
+            color: #eb67bf;
         }
 
         &.manta-title {
@@ -607,15 +711,15 @@ input:checked + .slider:before {
     width: 35px;
 
     &.jugger-nog-perc {
-        background-color: #742020;
+        background-color: #942222;
     }
 
     &.speed-cola-perc {
-        background-color: #225522;
+        background-color: #267c24;
     }
 
     &.double-tap-perc {
-        background-color: #6e6e0b;
+        background-color: #b4aa21;
     }
 
     & img {
